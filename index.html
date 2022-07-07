@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="data:;base64,-">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>Calculator</title>
+</head>
+<body>
+    <div class="calculator">
+        <div class="screen">
+            <div class="expScreen"></div>
+            <div class="activeScreen"></div>
+        </div>
+        <div class="buttons">
+            <div class="d-flex">
+                <div class="clear btn disable-select flex-grow-2" data-key="c">C</div>
+                <div class="backspace btn disable-select flex-grow-2" data-key="backspace"><i class="material-icons" style="font-size: 16px;">backspace</i></div>
+            </div>
+            <div class="d-flex">
+                <div class="numpad btn disable-select" data-key="7">7</div>
+                <div class="numpad btn disable-select" data-key="8">8</div>
+                <div class="numpad btn disable-select" data-key="9">9</div>
+                <div class="numpad btn disable-select" data-key="/">/</div>
+            </div>
+            <div class="d-flex">
+                <div class="numpad btn disable-select" data-key="4">4</div>
+                <div class="numpad btn disable-select" data-key="5">5</div>
+                <div class="numpad btn disable-select" data-key="6">6</div>
+                <div class="numpad btn disable-select" data-key="*">x</div>
+            </div>
+            <div class="d-flex">
+                <div class="numpad btn disable-select" data-key="1">1</div>
+                <div class="numpad btn disable-select" data-key="2">2</div>
+                <div class="numpad btn disable-select" data-key="3">3</div>
+                <div class="numpad btn disable-select" data-key="-">-</div>
+            </div>
+            <div class="d-flex">
+                <div class="numpad btn disable-select" data-key="0">0</div>
+                <div class="numpad btn disable-select" data-key=".">.</div>
+                <div class="numpad btn disable-select" data-key="=">=</div>
+                <div class="numpad btn disable-select" data-key="+">+</div>
+            </div>
+        </div>
+    </div>
+    <footer><a href="https://github.com/romarmph/odin-calculator" target="_blank">Created by: Romar Macaraeg</a></footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

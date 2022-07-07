@@ -1,0 +1,101 @@
+:root {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    margin: 0;
+    height: 100vh;
+    background-image: linear-gradient(to right, rgba(43, 155, 155, 0.558) , rgba(157, 54, 116, 0.512)), url(./img/GRAIN_HOLORAM_WALLPAPER_05.jpg);
+    background-size: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+footer {
+    position: absolute;
+    bottom: 24px;
+}
+
+footer a {
+    font-size: 16px;
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+}
+
+.calculator {
+    display: inline-block;
+    padding: 16px;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.1);  
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 1);
+}
+
+.screen {
+    height: 8rem;
+    background-color: rgba(255, 255, 255, 0.1);  
+    backdrop-filter: blur(4px);
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 1);
+}
+
+.buttons {
+    margin-top: 12px;
+    border-radius: 8px;
+    overflow: auto;
+    border: 1px solid rgba(255, 255, 255, 1);
+}
+
+.d-flex {
+    display: flex;
+}
+
+.flex-grow-2 {
+    flex-grow: 2;
+}
+
+.btn {
+    width: 36px;
+    font-size: 20px;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    padding: 2rem;
+    background-color: rgba(255, 255, 255, 0.1);  
+    backdrop-filter: blur(4px);
+}
+
+.btn:hover {
+    background-color: rgba(221, 221, 221, 0.1);
+}
+
+.btn:active {
+    background-color: rgba(182, 182, 182, 0.1);
+}
+
+.disable-select {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+.expScreen {
+    color: rgb(182, 182, 182);
+    height: 40%;
+    text-align: end;
+    font-size: 2rem;
+}
+
+.activeScreen {
+    color: #fff;
+    height: 60%;
+    font-size: 4rem;
+    font-weight: 300;
+    display: flex;
+    justify-content: end;
+    align-items: end;
+}
