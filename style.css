@@ -7,7 +7,8 @@ body {
     margin: 0;
     height: 100vh;
     background-image: linear-gradient(to right, rgba(43, 155, 155, 0.558) , rgba(157, 54, 116, 0.512)), url(./img/GRAIN_HOLORAM_WALLPAPER_05.jpg);
-    background-size: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -84,13 +85,13 @@ footer a {
 }
 
 .expScreen {
-    color: rgb(182, 182, 182);
+    color: rgb(221, 221, 221);
     height: 40%;
     text-align: end;
     font-size: 2rem;
 }
 
-.activeScreen {
+.inputScreen {
     color: #fff;
     height: 60%;
     font-size: 4rem;
