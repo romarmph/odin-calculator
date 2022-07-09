@@ -145,6 +145,9 @@ const doCalculate = function() {
     // If user clicked "=", display result and reset everything
     if (mathSymbol == "=" && number.second != 0) {
         number.result = operate(operator.current, number.first, number.second);
+        if (number.result.toString().length > 15) {
+            number.result = number.result.toExponential(4);
+        }
         displayExpression(number.result + " " + mathSymbol);
         number.first = 0;
         number.input = "0";
