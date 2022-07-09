@@ -1,6 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
+
 :root {
     margin: 0;
     padding: 0;
+    --font-mono: 'Roboto slab', monospace;
 }
 
 body {
@@ -16,6 +19,7 @@ body {
 }
 
 footer {
+    font-family: var(--font-mono);
     position: absolute;
     bottom: 24px;
 }
@@ -36,6 +40,7 @@ footer a {
 }
 
 .screen {
+    /* font-family: var(--font-mono); */
     height: 8rem;
     background-color: rgba(255, 255, 255, 0.1);  
     backdrop-filter: blur(4px);
@@ -60,6 +65,7 @@ footer a {
 }
 
 .btn {
+    /* font-family: var(--font-mono); */
     width: 36px;
     font-size: 20px;
     color: rgb(255, 255, 255);
@@ -75,6 +81,10 @@ footer a {
 
 .btn:active {
     background-color: rgba(182, 182, 182, 0.1);
+}
+
+.btn kbd {
+    font-family: var(--font-mono);
 }
 
 .disable-select {

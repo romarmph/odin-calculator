@@ -110,8 +110,12 @@ const getInput = function(button) {
     number.input = number.input + input;
 };
 
-const doCalculate = function() {
-    let mathSymbol = this.getAttribute("data-key");
+const doCalculate = function(button) {
+    let mathSymbol = button.getAttribute("data-key");
+
+    if (mathSymbol == "=" && number.first == 0 && number.second == 0) {
+        return;
+    }
 
     // Prevent starting an expression if value still zero
     if (number.input == "0.") {
@@ -128,7 +132,7 @@ const doCalculate = function() {
     }
 
     // Get first number
-    if (number.first == 0) {
+    if (number.first == 0 && mathSymbol != "=") {
         operator.current = mathSymbol;
         number.first = parseFloat(number.input);
         number.input = "0";
@@ -136,7 +140,7 @@ const doCalculate = function() {
         displayExpression(number.first + " " + operator.current);
         displayInput();
         inputScreen.style.fontSize = "4rem";
-        
+
         // Exit function, so that the next input will be stored in number.second
         return;
     }
@@ -173,18 +177,7 @@ const doCalculate = function() {
     }
 };
 
-numpad.forEach(button => {
-    button.addEventListener('click', () => {
-        getInput(button);
-        displayInput();
-    });
-});
-
-symbol.forEach(button => {
-    button.addEventListener('click', doCalculate);
-});
-
-clear.addEventListener('click', () => {
+const clearAll = function() {
     number.input = 0;
     number.first = 0;
     number.second = 0;
@@ -197,15 +190,81 @@ clear.addEventListener('click', () => {
     inputScreen.style.fontSize = "4rem";
     displayInput();
     displayExpression("");
-});
+}
 
-backspace.addEventListener('click', () => {
+const backSpace = function() {
     if (number.input.length == 1) {
         number.input = "0";
         displayInput();
         return;
     }
 
-    number.input = number.input.slice(0, -1)
+    if (number.input.length < 11) {
+        inputScreen.style.fontSize = '4rem';
+    }
+
+    if (number.input) {
+        number.input = number.input.slice(0, -1)
+        displayInput();
+    }
+}
+
+numpad.forEach(button => {
+    button.addEventListener('click', () => {
+        getInput(button);
+        displayInput();
+    });
+});
+
+symbol.forEach(button => {
+    button.addEventListener('click', () => {
+        doCalculate(button);
+    });
+});
+
+clear.addEventListener('click', () => {
+    clearAll();
+});
+
+backspace.addEventListener('click', () => {
+    backSpace();
+});
+
+window.addEventListener('keydown', function(e) {
+    const numpad = document.querySelector(`.numpad[data-key = "${e.key}"]`);
+    
+    if (!numpad) {
+        return;
+    }
+    
+    getInput(numpad);
     displayInput();
 });
+
+window.addEventListener('keypress', function(e) {
+    const symbol = document.querySelector(`.symbol[data-key = "${e.key}"]`);
+    
+    if (!symbol) {
+        return;
+    }
+    
+    doCalculate(symbol);
+});
+
+document.onkeydown = function(evt) {
+    const enter = document.querySelector('.enter');
+    evt = evt || window.event;
+    if (evt.key == "Escape" || evt.key == "c") {
+        clearAll();
+    }
+
+    if (evt.key == "Backspace") {
+        backSpace();
+    }
+
+    if (evt.key == "Enter") {
+        doCalculate(enter);
+        return;
+    }
+
+};
