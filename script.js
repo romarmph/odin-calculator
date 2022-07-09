@@ -163,8 +163,6 @@ const doCalculate = function() {
             operator.current = mathSymbol;
         }
     }
-
-    console.log(number.result);
 };
 
 numpad.forEach(button => {
