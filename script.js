@@ -53,7 +53,7 @@ const operate = function(operator, a, b) {
 
 const displayInput = function() {
     if (operator.clickedEquals) {
-        displayExpression("");
+        expressionScreen.textContent = "";;
         operator.clickedEquals = false;
     }
 
@@ -64,8 +64,11 @@ const displayInput = function() {
     inputScreen.textContent = `${number.input}`;
 };
 
-const displayExpression = function(expression) {
-    expressionScreen.textContent = `${expression}`;
+const displayExpression = function(number, symbol) {
+    if (number.toString().length > 15) {
+        number = number.toExponential(4);
+    }
+    expressionScreen.textContent = `${number + " " + symbol}`;
 };
 
 /**
@@ -126,7 +129,7 @@ const doCalculate = function(button) {
     if (number.input == "0") {
         operator.current = mathSymbol;
         if (number.first != 0) {
-            displayExpression(number.first + " " + operator.current);
+            displayExpression(number.first, operator.current);
         }
         return;
     }
@@ -137,7 +140,7 @@ const doCalculate = function(button) {
         number.first = parseFloat(number.input);
         number.input = "0";
         operator.isDot = false;
-        displayExpression(number.first + " " + operator.current);
+        displayExpression(number.first, operator.current);
         displayInput();
         inputScreen.style.fontSize = "4rem";
 
@@ -150,10 +153,7 @@ const doCalculate = function(button) {
     // If user clicked "=", display result and reset everything
     if (mathSymbol == "=" && number.second != 0) {
         number.result = operate(operator.current, number.first, number.second);
-        if (number.result.toString().length > 15) {
-            number.result = number.result.toExponential(4);
-        }
-        displayExpression(number.result + " " + mathSymbol);
+        displayExpression(number.result, mathSymbol);
         number.first = 0;
         number.input = "0";
         displayInput();
@@ -162,10 +162,7 @@ const doCalculate = function(button) {
     
     if (number.first != 0 && operator.current && number.second != 0) {
         number.result = operate(operator.current, number.first, number.second);
-        if (number.result.toString().length > 15) {
-            number.result = number.result.toExponential(4);
-        }
-        displayExpression(number.result + " " + mathSymbol);
+        displayExpression(number.result,mathSymbol);
         number.first = number.result;
         number.input = "0";
         operator.isDot = false;
@@ -189,7 +186,7 @@ const clearAll = function() {
 
     inputScreen.style.fontSize = "4rem";
     displayInput();
-    displayExpression("");
+    expressionScreen.textContent = "";;
 }
 
 const backSpace = function() {
