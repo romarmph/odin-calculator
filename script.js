@@ -114,6 +114,10 @@ const getInput = function(button) {
 const doCalculate = function() {
     let mathSymbol = this.getAttribute("data-key");
 
+    if (number.input == "0" && number.result == 0) {
+        return;
+    }
+
     // Get first number
     if (number.first == 0) {
         operator.current = mathSymbol;
