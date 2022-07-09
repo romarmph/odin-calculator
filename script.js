@@ -65,7 +65,7 @@ const displayInput = function() {
 };
 
 const displayExpression = function(number, symbol) {
-    if (number.toString().length > 15) {
+    if (number.toString().length > 24) {
         number = number.toExponential(4);
     }
     expressionScreen.textContent = `${number + " " + symbol}`;
