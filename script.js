@@ -85,18 +85,19 @@ const getInput = function(button) {
     if (input != "0" && number.input == "0") {
         number.input = "";
     }
-
-    if (input == ".") {
-        number.input = "0"+number.input + input;
-        return;
-    }
     
     // Numbers (especially floats) can't have more than one decimal point!
     if (input == "." && operator.isDot) {
         return;
     }
+    
+    if (input == "." && !operator.isDot && number.input == "") {
+        console.log('fire');
+        number.input = "0"+number.input + input;
+        operator.isDot = true;
+        return;
+    }
 
-    // Activate above statement
     if (input == "." && !operator.isDot) {
         operator.isDot = true;
     }
