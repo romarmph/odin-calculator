@@ -92,7 +92,6 @@ const getInput = function(button) {
     }
     
     if (input == "." && !operator.isDot && number.input == "") {
-        console.log('fire');
         number.input = "0"+number.input + input;
         operator.isDot = true;
         return;
@@ -114,7 +113,17 @@ const getInput = function(button) {
 const doCalculate = function() {
     let mathSymbol = this.getAttribute("data-key");
 
-    if (number.input == "0" && number.result == 0) {
+    // Prevent starting an expression if value still zero
+    if (number.input == "0.") {
+        return;
+    }
+
+    // Allow changing operator while current input or 2nd number is still missing
+    if (number.input == "0") {
+        operator.current = mathSymbol;
+        if (number.first != 0) {
+            displayExpression(number.first + " " + operator.current);
+        }
         return;
     }
 
@@ -132,9 +141,9 @@ const doCalculate = function() {
     }
     
     number.second = parseFloat(number.input);
-    
+
     // If user clicked "=", display result and reset everything
-    if (mathSymbol == "=") {
+    if (mathSymbol == "=" && number.second != 0) {
         number.result = operate(operator.current, number.first, number.second);
         displayExpression(number.result + " " + mathSymbol);
         number.first = 0;
@@ -143,7 +152,7 @@ const doCalculate = function() {
         operator.clickedEquals = true;
     }
     
-    if (number.first != 0 && operator.current) {
+    if (number.first != 0 && operator.current && number.second != 0) {
         number.result = operate(operator.current, number.first, number.second);
         displayExpression(number.result + " " + mathSymbol);
         number.first = number.result;
@@ -155,6 +164,7 @@ const doCalculate = function() {
         }
     }
 
+    console.log(number.result);
 };
 
 numpad.forEach(button => {
