@@ -135,6 +135,7 @@ const doCalculate = function() {
         operator.isDot = false;
         displayExpression(number.first + " " + operator.current);
         displayInput();
+        inputScreen.style.fontSize = "4rem";
         
         // Exit function, so that the next input will be stored in number.second
         return;
@@ -157,11 +158,15 @@ const doCalculate = function() {
     
     if (number.first != 0 && operator.current && number.second != 0) {
         number.result = operate(operator.current, number.first, number.second);
+        if (number.result.toString().length > 15) {
+            number.result = number.result.toExponential(4);
+        }
         displayExpression(number.result + " " + mathSymbol);
         number.first = number.result;
         number.input = "0";
         operator.isDot = false;
         displayInput();
+        inputScreen.style.fontSize = "4rem";
         if (mathSymbol != "=") {
             operator.current = mathSymbol;
         }
@@ -189,6 +194,7 @@ clear.addEventListener('click', () => {
     operator.clickedEquals = false
     operator.isDot = false;
 
+    inputScreen.style.fontSize = "4rem";
     displayInput();
     displayExpression("");
 });
