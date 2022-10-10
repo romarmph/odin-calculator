@@ -6,6 +6,10 @@
     --font-mono: 'Roboto slab', monospace;
 }
 
+* {
+    font-family: var(--font-mono);
+}
+
 body {
     margin: 0;
     height: 100vh;
